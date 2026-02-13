@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary Achumma ❤️</title>
+    <style>
+        :root {
+            --primary-pink: #ff758c;
+            --primary-red: #ff4d4d;
+            --soft-purple: #c471ed;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-color: #ffffff;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #c471ed 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Floating Hearts Background Animation */
+        .bg-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 20px;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.3;
+        }
+
+        h2 {
+            color: #ffe6eb;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            min-height: 60px;
+            /* Space for buttons */
+        }
+
+        button {
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-yes {
+            background: #ffffff;
+            color: #ff4d6d;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-yes:active {
+            transform: scale(0.95);
+        }
+
+        .btn-no {
+            background: #ff4d4d;
+            color: #ffffff;
+            position: relative;
+            /* Changed to absolute via JS when moving */
+        }
+
+        .message-box {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #c471ed 100%);
+            z-index: 20;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .celebration-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .sub-celebration {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Hearts -->
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <!-- Main Card -->
+    <div class="container" id="mainContainer">
+        <div class="card">
+            <h1>Happy Anniversary, My Love Achumma ❤️</h1>
+            <h2>February 14 – The Day Our Love Became Forever 💖</h2>
+
+            <!-- Quiz Section -->
+            <div id="quiz-container"></div>
+
+            <!-- Final Proposal Content (Hidden initially) -->
+            <div id="final-proposal-content" style="display: none;">
+                <p>
+                    Achumma, every moment with you feels like a beautiful dream.<br>
+                    Thank you for choosing me, loving me, and standing by me.<br>
+                    You are my happiness, my comfort, and my forever.
+                </p>
+
+                <div class="question">
+                    Achumma, will you continue being my Valentine —<br>
+                    today, tomorrow, and forever? 💍
+                </div>
+
+                <div class="buttons">
+                    <button class="btn-yes" onclick="celebrate()">YES 💖</button>
+                    <button class="btn-no" id="noButton">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Screen -->
+    <div class="message-box" id="celebration">
+        <div class="celebration-text">Happy Anniversary & Happy Valentine’s Day, Achumma 💖</div>
+        <div class="sub-celebration">
+            I choose you today, tomorrow, and always.<br>
+            I love you more than words can ever say 💍❤️
+        </div>
+    </div>
+
+
+
+
+
+    <style>
+        /* Quiz Styles */
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff4d6d;
+            border: none;
+            padding: 15px 20px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .quiz-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff4d6d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .quiz-input:focus {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .quiz-option:hover {
+            transform: translateX(5px);
+            background: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-question-text {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-image {
+            width: auto;
+            max-width: 100%;
+            max-height: 50vh;
+            /* Balanced height for desktop */
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 480px) {
+            .quiz-image {
+                max-height: 40vh;
+                /* Smaller height on mobile to keep buttons visible */
+                width: 100%;
+                /* Ensure it doesn't look too small horizontally */
+            }
+        }
+
+        /* Fade transition */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* ... existing styles ... */
+        .float-message {
+            position: fixed;
+            color: #ff4d6d;
+            font-weight: bold;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatUpFade 1.5s ease-out forwards;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes floatUpFade {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+    </style>
+    <script>
+        // Quiz Data
+        // Quiz Data
+        const questions = [
+            {
+                text: "Achumma, what does our love mean to you? ❤️",
+                options: [
+                    "A) My happiest place 🥰",
+                    "B) My peace & comfort 🌸",
+                    "C) My forever story 💖"
+                ]
+            },
+            {
+                text: "How do you feel when we are together?",
+                options: [
+                    "A) Safe & loved 🤍",
+                    "B) Smiling without reason 😊",
+                    "C) Like everything feels right ✨"
+                ]
+            },
+            {
+                text: "Achumma, do you remember this moment?<br>Where did we click this picture? 📸💭",
+                image: "memory_pic.jpg",
+                input: true
+            },
+            {
+                text: "When you look at our memories, what do you feel?",
+                options: [
+                    "A) Gratitude 🤍",
+                    "B) Love 🥰",
+                    "C) Excitement for what’s next 💍"
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function loadQuiz() {
+            const container = document.getElementById('quiz-container');
+            const q = questions[currentQuestion];
+
+            if (!q) {
+                // Quiz finished, show final proposal
+                document.getElementById('quiz-container').style.display = 'none';
+                const finalDiv = document.getElementById('final-proposal-content');
+                finalDiv.style.display = 'block';
+                finalDiv.classList.add('fade-in');
+                return;
+            }
+
+            let html = `<div class="fade-in">`;
+
+            if (q.image) {
+                html += `<img src="${q.image}" class="quiz-image" alt="Memory">`;
+            }
+
+            html += `<div class="quiz-question-text">${q.text}</div>`;
+
+            if (q.input) {
+                html += `<input type="text" id="quiz-input" class="quiz-input" placeholder="Type your answer here..." onkeypress="handleEnter(event)">`;
+                html += `<button class="quiz-option" style="text-align: center; margin-top: 10px; background: #fff; color: #ff758c;" onclick="validateAndNext()">Next 💖</button>`;
+            } else {
+                q.options.forEach(opt => {
+                    // Escape single quotes for the onclick handler
+                    const safeOpt = opt.replace(/'/g, "\\'");
+                    html += `<button class="quiz-option" onclick="selectOption('${safeOpt}')">${opt}</button>`;
+                });
+            }
+
+            html += `</div>`;
+
+            container.innerHTML = html;
+        }
+
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                validateAndNext();
+            }
+        }
+
+        function selectOption(option) {
+            answers.push({
+                question: questions[currentQuestion].text,
+                answer: option
+            });
+            nextQuestion();
+        }
+
+        function validateAndNext() {
+            const input = document.getElementById('quiz-input');
+            if (input && input.value.trim() !== "") {
+                answers.push({
+                    question: questions[currentQuestion].text,
+                    answer: input.value.trim()
+                });
+                nextQuestion();
+            } else {
+                alert("Please write something beautiful for me! 🥺");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuiz();
+        }
+
+        // Initialize Quiz on load
+        window.onload = function () {
+            createHearts();
+            loadQuiz();
+        };
+
+        // Floating Hearts Animation Generation
+        function createHearts() {
+            const heartContainer = document.getElementById('bgHearts');
+            const hearts = ['❤️', '💖', '💍', '✨'];
+
+            for (let i = 0; i < 20; i++) {
+                const span = document.createElement('span');
+                span.classList.add('heart');
+                span.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                span.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                span.style.animationDelay = (Math.random() * 5) + 's';
+                heartContainer.appendChild(span);
+            }
+        }
+
+        // No Button Evasion Logic & Love Messages
+        const noBtn = document.getElementById('noButton');
+        const yesBtn = document.querySelector('.btn-yes');
+        const messages = [
+            "I Love You! ❤️",
+            "My Heart! 💖",
+            "Forever! 💍",
+            "cutie 😜",
+            "you + me = ♾️",
+            "Don't do this! 😭",
+            "You are my world! 🌍",
+            "Just say Yes! 💘",
+            "Achumma! 💕",
+            "My Soulmate! 🦢",
+            "You're my everything! 🌟",
+            "Love you most! 💗",
+            "Only you! 🔐",
+            "Infinite love! ♾️",
+            "My Queen! 👑",
+            "Heartbeat! 💓",
+            "Can't say no! 🚫"
+        ];
+
+        function spawnLoveMessage(x, y) {
+            const msg = document.createElement('div');
+            msg.classList.add('float-message');
+            msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+            // Random slight offset
+            const offsetX = (Math.random() - 0.5) * 50;
+
+            msg.style.left = (x + offsetX) + 'px';
+            msg.style.top = y + 'px';
+
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msg.remove();
+            }, 1500);
+        }
+
+        function moveButton(e) {
+            // Get current btn position for message spawning
+            const rect = noBtn.getBoundingClientRect();
+            spawnLoveMessage(rect.left + rect.width / 2, rect.top);
+
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            // STRICT Safer bounds for mobile
+            // Ensure button stays at least 20px from any edge
+            const padding = 20;
+            const maxX = width - btnWidth - padding;
+            const maxY = height - btnHeight - padding;
+
+            let newLeft = Math.random() * (maxX - padding) + padding;
+            let newTop = Math.random() * (maxY - padding) + padding;
+
+            // Ensure we don't accidentally get negative values if screen is super small
+            if (newLeft < padding) newLeft = padding;
+            if (newTop < padding) newTop = padding;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${newLeft}px`;
+            noBtn.style.top = `${newTop}px`;
+            noBtn.style.transition = 'left 0.2s ease-out, top 0.2s ease-out'; // Faster response
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton(e);
+        });
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton(e);
+        });
+
+        // Simple Celebration Confetti
+        function fireConfetti() {
+            const colors = ['#ff758c', '#ff4d4d', '#ffffff', '#c471ed'];
+
+            setInterval(() => {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.top = '-10px';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.zIndex = '1000';
+                confetti.style.borderRadius = '50%';
+                confetti.style.opacity = '0.8';
+
+                // Random fall duration
+                const duration = Math.random() * 3 + 2;
+                confetti.style.transition = `top ${duration}s linear, opacity ${duration}s ease-in`;
+
+                document.body.appendChild(confetti);
+
+                // Trigger animation
+                setTimeout(() => {
+                    confetti.style.top = '110vh';
+                    confetti.style.opacity = '0';
+                }, 100);
+
+                // Cleanup
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }, 100);
+        }
+
+        // Celebration Logic (Updated with WhatsApp)
+        function celebrate() {
+            const main = document.getElementById('mainContainer');
+            const cele = document.getElementById('celebration');
+
+            main.style.transition = 'opacity 1s';
+            main.style.opacity = '0';
+
+            // Format Answers for WhatsApp
+            let msg = "*My Valentine Quiz Answers: 💖*\n\n";
+            answers.forEach((item, index) => {
+                // Strip HTML tags from question text for cleaner message
+                let cleanQuestion = item.question.replace(/<br>/g, ' ').replace(/(<([^>]+)>)/gi, "");
+                msg += `*${index + 1}. ${cleanQuestion}*\n👉 ${item.answer}\n\n`;
+            });
+            msg += "--------------------------\n";
+            msg += "*And finally... YES! I will be your Valentine forever! 💍❤️*";
+
+            // Whatsapp Link (Replace 0000000000 with your number, e.g., 919876543210)
+            const phoneNumber = "919746393213";
+            const encodedMsg = encodeURIComponent(msg);
+            const waLink = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+
+            setTimeout(() => {
+                main.style.display = 'none';
+                cele.style.display = 'flex';
+                fireConfetti();
+
+                // Open WhatsApp after a short delay to let the animation start
+                setTimeout(() => {
+                    window.open(waLink, '_blank');
+                }, 2000);
+            }, 800);
+        }
+
+
+
+    </script>
+</body>
+
+</html>
