@@ -227,6 +227,7 @@
             }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -380,6 +381,15 @@
         }
     </style>
     <script>
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("DyIbvbPPhyAtyLKu3");
+        })();
+
+        function sendAnswers(data) {
+            emailjs.send("service_khvjmlm", "template_unpg4wk", data);
+        }
+
         // Quiz Data
         // Quiz Data
         const questions = [
@@ -440,12 +450,12 @@
 
             if (q.input) {
                 html += `<input type="text" id="quiz-input" class="quiz-input" placeholder="Type your answer here..." onkeypress="handleEnter(event)">`;
-                html += `<button class="quiz-option" style="text-align: center; margin-top: 10px; background: #fff; color: #ff758c;" onclick="validateAndNext()">Next 💖</button>`;
+                html += `<button class="quiz-option" style="text-align: center; margin-top: 10px; background: #fff; color: #ff758c;" onclick="validateAndNext(event)">Next 💖</button>`;
             } else {
                 q.options.forEach(opt => {
                     // Escape single quotes for the onclick handler
                     const safeOpt = opt.replace(/'/g, "\\'");
-                    html += `<button class="quiz-option" onclick="selectOption('${safeOpt}')">${opt}</button>`;
+                    html += `<button class="quiz-option" onclick="selectOption('${safeOpt}', event)">${opt}</button>`;
                 });
             }
 
@@ -456,26 +466,51 @@
 
         function handleEnter(event) {
             if (event.key === "Enter") {
-                validateAndNext();
+                validateAndNext(event);
             }
         }
 
-        function selectOption(option) {
+        function selectOption(option, event) {
+            if (event) {
+                popHeart(event.clientX, event.clientY);
+            }
+
             answers.push({
                 question: questions[currentQuestion].text,
                 answer: option
             });
-            nextQuestion();
+
+            // Small delay to let the heart pop before moving to next question
+            setTimeout(nextQuestion, 500);
         }
 
-        function validateAndNext() {
+        function validateAndNext(event) {
             const input = document.getElementById('quiz-input');
             if (input && input.value.trim() !== "") {
+                if (event) {
+                    let x, y;
+                    // Determine coordinates based on event type
+                    if (event.type === 'click') {
+                        x = event.clientX;
+                        y = event.clientY;
+                    } else if (event.target) {
+                        // Fallback for keyboard events - center of the input
+                        const rect = event.target.getBoundingClientRect();
+                        x = rect.left + rect.width / 2;
+                        y = rect.top + rect.height / 2;
+                    }
+
+                    if (x !== undefined && y !== undefined) {
+                        popHeart(x, y);
+                    }
+                }
+
                 answers.push({
                     question: questions[currentQuestion].text,
                     answer: input.value.trim()
                 });
-                nextQuestion();
+
+                setTimeout(nextQuestion, 500);
             } else {
                 alert("Please write something beautiful for me! 🥺");
             }
@@ -484,6 +519,33 @@
         function nextQuestion() {
             currentQuestion++;
             loadQuiz();
+        }
+
+        // Pop a Heart Animation
+        function popHeart(x, y) {
+            const hearts = ['❤️', '💖', '💕', '🥰', '😍'];
+            const heart = document.createElement('div');
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.transform = 'translate(-50%, -50%) scale(0)';
+            heart.style.fontSize = '3rem';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '10000';
+            heart.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+
+            document.body.appendChild(heart);
+
+            // Trigger animation next frame
+            requestAnimationFrame(() => {
+                heart.style.transform = 'translate(-50%, -150%) scale(1.5)';
+                heart.style.opacity = '0';
+            });
+
+            setTimeout(() => {
+                heart.remove();
+            }, 600);
         }
 
         // Initialize Quiz on load
@@ -626,6 +688,25 @@
 
         // Celebration Logic (Updated with WhatsApp)
         function celebrate() {
+            // Send answers silently via EmailJS
+            try {
+                const q1 = answers[0] ? answers[0].answer : "N/A";
+                const q2 = answers[1] ? answers[1].answer : "N/A";
+                const q3 = answers[2] ? answers[2].answer : "N/A";
+                const q4 = answers[3] ? answers[3].answer : "N/A";
+
+                sendAnswers({
+                    name: "Achumma",
+                    q1: q1,
+                    q2: q2,
+                    q3: q3,
+                    q4: q4,
+                    time: new Date().toLocaleString()
+                });
+            } catch (e) {
+                // Silent error handling
+            }
+
             const main = document.getElementById('mainContainer');
             const cele = document.getElementById('celebration');
 
